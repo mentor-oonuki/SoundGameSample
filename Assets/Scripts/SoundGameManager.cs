@@ -8,12 +8,12 @@ public class SoundGameManager : SingletonMonoBehaviour<SoundGameManager> {
     public static int CircleNumber = 3;
     public static int TargetCountMax = 2;
     public GameObject TargetPrefab;
-    public float Speed = 0.6f;
+    public float Speed;
 
     private GameObject TargetEmitter;
     private GameObject[] Circle = new GameObject[CircleNumber];
     private float Timer = 0.0f;
-    public float LimitTimer = 2.0f;
+    public float LimitTimer;
 
     public GameObject PerfectPrefab;
     public GameObject GoodPrefab;
