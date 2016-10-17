@@ -3,16 +3,24 @@ using System.Collections;
 using System.Linq;
 using System;
 
-public class SoundGameManager : MonoBehaviour {
+public class SoundGameManager : SingletonMonoBehaviour<SoundGameManager> {
 
     public static int CircleNumber = 3;
     public static int TargetCountMax = 2;
     public GameObject TargetPrefab;
+    public float Speed = 0.6f;
 
     private GameObject TargetEmitter;
     private GameObject[] Circle = new GameObject[CircleNumber];
     private float Timer = 0.0f;
     public float LimitTimer = 2.0f;
+
+    public GameObject PerfectPrefab;
+    public GameObject GoodPrefab;
+    public GameObject BadPrefab;
+
+    public float PerfectOffset;
+    public float GoodOffset;
 
     private int[] TargetLine = new int[CircleNumber];
 
@@ -38,11 +46,11 @@ public class SoundGameManager : MonoBehaviour {
             TargetLine = ArrayShuffle(TargetLine);
 
 
-            int targetCount = UnityEngine.Random.Range(1,2 + 1);
+            int targetCount = UnityEngine.Random.Range(1, TargetCountMax + 1);
 
             for(int index = 0; index < targetCount; index++)
             {
-                int lineNumber = UnityEngine.Random.Range(0, CircleNumber);
+                int lineNumber = TargetLine[index];
                 Instantiate(TargetPrefab, new Vector3(Circle[lineNumber].transform.position.x,
                     TargetEmitter.transform.position.y,
                     0.0f),
