@@ -24,6 +24,8 @@ public class SoundGameManager : SingletonMonoBehaviour<SoundGameManager> {
 
     private int[] TargetLine = new int[CircleNumber];
 
+    public int Level;
+
     void Start () {
         for(int index = 0; index < CircleNumber; index++)
         {
@@ -37,6 +39,11 @@ public class SoundGameManager : SingletonMonoBehaviour<SoundGameManager> {
         Timer += Time.deltaTime;
         if(Timer > LimitTimer)
         {
+            Level++;
+
+            LimitTimer = LimitTimer - (Level * 0.0002f);
+            Speed = Speed + (Level * 0.0001f);
+
             Timer = 0.0f;
             
             for(int index = 0; index < CircleNumber; index++)
